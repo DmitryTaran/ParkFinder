@@ -1,0 +1,29 @@
+.titleChanger {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.inputWrapper {
+    margin: 10px 0;
+}
+
+.buttonsPanel {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.button {
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    background-color: rgba(69, 68, 68, 0.05);
+}
+
+.button:hover {
+    background-color: rgba(69, 68, 68, 0.2);
+
+}

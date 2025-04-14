@@ -1,0 +1,9 @@
+.page-wrapper{
+    height: 80vh;
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}

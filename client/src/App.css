@@ -1,0 +1,47 @@
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.title-pointer {
+    display: flex;
+    padding: 0 20px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stream {
+    border-radius: 8px;
+    margin-bottom: 10px;
+    align-self: center;
+
+}
+
+.stream img {
+    width: 700px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.video-capture{
+    display: flex;
+    margin: 20px;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+.video-capture button{
+    margin: 10px 0;
+}
+
+
+
+

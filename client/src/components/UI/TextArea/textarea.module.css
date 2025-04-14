@@ -1,0 +1,22 @@
+.textAreaBlock{
+    margin: 17px 0;
+    width: 100%;
+    border: 1px solid rgba(4, 61, 24, 0.3);
+    border-radius: 10px;
+    padding: 3px;
+    position: relative;
+    transition: 0.1s;
+}
+
+.textArea{
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    padding: 8px;
+    border: none;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 50px;
+    max-height: 150px;
+}

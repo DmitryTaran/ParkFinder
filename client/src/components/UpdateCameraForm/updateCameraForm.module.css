@@ -1,0 +1,19 @@
+.confirmation {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons{
+    display: flex;
+    align-self: flex-end;
+    margin-top: 20px;
+}
+
+.button{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.title{
+    margin-bottom: 10px;
+}

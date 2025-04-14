@@ -1,0 +1,27 @@
+.boardList {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.addBoard {
+    border-radius: 8px;
+    margin: 0 20px 20px 0;
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: 0.3s;
+    min-width: 200px;
+    width: 200px;
+    min-height: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addBoard:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: scale(110%);
+}
+

@@ -1,0 +1,35 @@
+.authForm{
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 8px;
+    width: 500px;
+    min-width: 500px;
+}
+
+.formInputs{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 150px;
+    min-height: 150px;
+}
+
+.entering{
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.entering Button{
+    margin-left: 20px;
+}
+
+.haveAccount span{
+    cursor: pointer;
+    text-decoration: underline;
+}

@@ -1,0 +1,38 @@
+.cameraInfo{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 2px 1px rgba(0,0,0, 0.3);
+
+}
+
+.cameraInfoItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.1);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+.cameraInfoItem button{
+    background-color: rgba(0,0,0,0.05);
+    font-size: 1rem;
+    padding: 5px;
+    color: rgba(0,0,0,0.6);
+    width: 35px;
+    height: 35px;
+}
+
+.cameraInfoItem button:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.cameraInfo button{
+    margin-bottom: 5px;
+}

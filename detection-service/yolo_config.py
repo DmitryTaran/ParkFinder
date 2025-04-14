@@ -1,0 +1,2 @@
+confidence = 0.5
+iou = 0.45

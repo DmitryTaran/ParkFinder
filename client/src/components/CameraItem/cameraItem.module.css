@@ -1,0 +1,68 @@
+.cameraItem {
+    border-radius: 8px;
+    margin: 0 20px 20px 0;
+    background-color: white;
+    box-shadow: 0 0 2px 1px rgba(0,0,0, 0.3);
+    cursor: pointer;
+    transition: 0.3s;
+    max-width: 200px;
+    min-width: 200px;
+    min-height: 150px;
+    display: flex;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.content{
+    position: absolute;
+}
+
+.cameraItem:hover{
+    transform: translate(3px, 6px) scale(110%);
+}
+
+.title{
+    align-self: flex-end;
+    width: inherit;
+    max-width: inherit;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    height: 35%;
+    flex-grow: 2;
+    background-color: rgb(45, 45, 45);
+    border-radius: 0 0 8px 8px;
+    color: rgb(229, 229, 229);
+    padding-left: 10px;
+    font-weight: 500;
+    font-size: 1.1rem;
+;
+}
+
+.buttonsPanel{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.deleteButton{
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin-left: 5px;
+    background-color: rgba(178, 178, 178, 0.5);
+    border-radius: 4px;
+    /*background-color: rgba(183, 5, 5, 0.3);*/
+}
+
+.deleteButton:hover{
+    background-color: rgba(178, 178, 178, 0.7);
+
+    /*background-color: rgba(183, 5, 5, 0.76);*/
+}
+
+.deleteButton:focus-visible,
+.deleteButton:focus{
+    box-shadow: 0 0 0 0;
+}
+
