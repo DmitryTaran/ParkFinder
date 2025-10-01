@@ -45,9 +45,7 @@ async def detect_image(mark_up: str = Form(...), frame: UploadFile = File(...)):
     parking_lots = parseMarkUp(json.loads(mark_up))
     nparray = np.frombuffer(contents, np.uint8)
     image = cv.imdecode(nparray, cv.IMREAD_COLOR)
-
     result = await process_image(image, parking_lots)
-
     return result
 
 
