@@ -1,0 +1,98 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: parkfinder # Единое имя базы данных
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    healthcheck:
+      test:
+        ["CMD", "pg_isready", "-U", "postgres", "-d", "parkfinder"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  video-capture:
+    build:
+      context: ./video-capture
+      dockerfile: Dockerfile
+    container_name: video_capture_service
+    ports:
+      - "8001:8001"
+    command: python main.py
+
+  detection-service:
+    build:
+      context: ./detection-service
+      dockerfile: Dockerfile
+    container_name: detection_ml_service
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./detection-service/detections:/app/detections
+    # Ожидание запуска захвата видео, но не жесткая зависимость, если он не упал
+    depends_on:
+      - video-capture
+    command: python main.py
+
+  manage-server:
+    build:
+      context: ./manage-server
+      dockerfile: Dockerfile
+    container_name: manage_backend_server
+    restart: always
+    environment:
+      PORT: 3000
+      DB_NAME: parkfinder # 🟢 ИСПРАВЛЕНО: Должно совпадать с POSTGRES_DB
+      DB_HOST: db
+      DB_PORT: 5432 # ВНУТРЕННИЙ порт, остается 5432
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      HASH_SALT: 5
+      SECRET_KEY: bibyasos
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: node index.js
+
+  data-collector:
+    build:
+      context: ./data-collector
+      dockerfile: Dockerfile
+    container_name: data_collector_service
+    restart: always
+    environment:
+      PORT: 8003
+      DB_NAME: parkfinder # 🟢 ИСПРАВЛЕНО: Должно совпадать с POSTGRES_DB
+      DB_HOST: db
+      DB_PORT: 5432 # ВНУТРЕННИЙ порт, остается 5432
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - "8003:8003"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: node index.js
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client_frontend
+    ports:
+      - "80:80"
+
+volumes:
+  postgres_data:

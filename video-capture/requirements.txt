@@ -1,0 +1,6 @@
+fastapi
+uvicorn  # Часто используется для запуска FastAPI
+aiohttp
+opencv-python  # Для импорта cv2 и cv2 as cv
+pydantic # Часто используется с FastAPI для валидации данных
+python-multipart # Если используются формы или загрузка файлов в FastAPI
