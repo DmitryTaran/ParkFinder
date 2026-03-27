@@ -45,15 +45,13 @@ async def detect_image(mark_up: str = Form(...), frame: UploadFile = File(...)):
     parking_lots = parseMarkUp(json.loads(mark_up))
     nparray = np.frombuffer(contents, np.uint8)
     image = cv.imdecode(nparray, cv.IMREAD_COLOR)
-
     result = await process_image(image, parking_lots)
-
     return result
 
 
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="127.0.0.1", port=8002)
+    uvicorn.run(app, host="0.0.0.0", port=8002)
 
 app.run(debug=True)

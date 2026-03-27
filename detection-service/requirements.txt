@@ -1,6 +1,10 @@
 # Usage: pip install -r requirements.txt
 
 # Base ----------------------------------------
+shapely
+fastapi
+uvicorn
+python-multipart
 matplotlib>=3.2.2
 numpy>=1.18.5,<1.24.0
 opencv-python>=4.1.1

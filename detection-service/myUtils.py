@@ -52,24 +52,46 @@ def compute_overlaps(parking_lots, car_boxes):
 
 
 def get_iou(polygon1, polygon2):
-    if polygon1.intersects(polygon2):
-        polygon_intersection = polygon1.intersection(polygon2).area
-        polygon_union = polygon1.union(polygon2).area
-        return polygon_intersection / polygon_union
-    else:
-        return 0
+    try:
+        # 1. Пытаемся "вылечить"
+        if not polygon1.is_valid:
+            polygon1 = polygon1.buffer(0)
+        if not polygon2.is_valid:
+            polygon2 = polygon2.buffer(0)
+
+        # 2. Пробуем вычислить
+        # После buffer(0) геометрия должна быть валидной, но для надежности
+        # оставляем проверку intersects и вычисление внутри try-блока
+        if polygon1.intersects(polygon2):
+            intersection_area = polygon1.intersection(polygon2).area
+            union_area = polygon1.union(polygon2).area
+
+            if union_area == 0:
+                return 0.0
+            
+            return intersection_area / union_area
+        else:
+            return 0.0
+
+    except GEOSException:
+        # 3. Если что-то пошло не так даже после лечения, безопасно выходим
+        return 0.0
 
 
 def getFreeParkingLotsCount(parking_lots, overlaps):
     count = 0
     checked_lots = []
     for lot, overlap in zip(parking_lots, overlaps):
-        max_IoU_overlap = np.max(overlap)
+        overlap_arr = np.array(overlap) 
+        if overlap_arr.size == 0:
+            max_IoU_overlap = 0.0
+        else:
+            max_IoU_overlap = np.max(overlap_arr)
         if max_IoU_overlap < 0.15:
-            checked_lots.append(dict({'lot': lot, 'isFree': True}))
+            checked_lots.append({'lot': lot, 'isFree': True})
             count += 1
         else:
-            checked_lots.append(dict({'lot': lot, 'isFree': False}))
+            checked_lots.append({'lot': lot, 'isFree': False})
     return [checked_lots, count]
 
 
